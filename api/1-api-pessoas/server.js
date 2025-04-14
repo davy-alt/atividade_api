@@ -1,10 +1,17 @@
 
 import express from 'express' 
 import { v4 as uuidv4 } from 'uuid';
+import cors from 'cors'
+
 
 
 
 const app = express()
+app.use(cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELTE"],
+    credentials: true
+}))
 app.use(express.json())
 const PORT = 3333
 
@@ -13,7 +20,7 @@ const PORT = 3333
     // [X] - Cadastrar uma unica pessoa
     // [X] - Buscar uma unica pessoa
     // [X] - Atualizar uma unica pessoa
-    // [] - Deletar uma unica pessoa
+    // [X] - Deletar uma unica pessoa
 
 const pessoas = []
 
@@ -112,3 +119,4 @@ app.delete('/pessoas/:id', (request, response) => {
 app.listen(PORT, () => {
     console.log('Servidor iniciado na porta', PORT)
 })
+
